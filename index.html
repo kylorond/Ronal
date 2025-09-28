@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Putra & Putri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/icons/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="overflow-x-hidden overflow-y-hidden">
+    
+    <div class="pattern-overlay"></div>
+    <div class="video-overlay"></div>
+    <video autoplay muted loop id="video-bg">
+      <source src="video/background.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div id="preloader" class="fixed inset-0 bg-[#121212] z-[200] flex flex-col items-center justify-center transition-opacity duration-1000">
+        <div class="text-center">
+            <h2 class="font-script text-6xl text-gold-gradient">Putra & Putri</h2>
+            <p class="font-heading mt-4 text-gray-300">Loading Invitation...</p>
+            <div class="w-8 h-8 border-2 border-t-transparent border-[#c5a47e] rounded-full animate-spin mt-6 mx-auto"></div>
+        </div>
+    </div>
+
+    <div id="music-player" class="fixed bottom-24 md:bottom-5 right-5 z-50">
+        <button id="play-pause-btn" class="w-12 h-12 bg-gray-800/50 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-[#c5a47e] shadow-lg transition-transform hover:scale-110">
+            <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><rect width="4" height="16" x="6" y="4"/><rect width="4" height="16" x="14" y="4"/></svg>
+        </button>
+        <audio id="background-music" loop>
+            <source src="music/music.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <section id="cover" class="h-screen w-screen bg-cover bg-center flex flex-col items-center justify-center text-center p-4 fixed top-0 left-0 z-[100] transition-transform duration-1000 transform bg-black" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://plus.unsplash.com/premium_photo-1756960337687-68ff89ee4211?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+        <p class="font-heading text-lg tracking-widest text-gray-200">THE WEDDING OF</p>
+        <h1 class="font-script text-6xl sm:text-7xl md:text-9xl my-4 text-gold-gradient">Putra & Putri</h1>
+        <p class="text-gray-300">Kepada Bapak/Ibu/Saudara/i,</p>
+        <p id="guest-name" class="font-bold text-xl text-white mt-1">Tamu Undangan</p>
+        <p class="text-gray-300 mt-4 max-w-xs sm:max-w-sm">Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir di acara pernikahan kami.</p>
+        <button id="open-invitation" class="mt-8 bg-transparent border-2 border-[#c5a47e] text-[#c5a47e] py-3 px-8 rounded-full font-heading tracking-widest hover:bg-[#c5a47e] hover:text-[#1a1a1a] transition-all duration-300 flex items-center gap-2 animate-pulse">
+            <i class="fa-solid fa-envelope-open"></i>
+            Buka Undangan
+        </button>
+    </section>
+    
+    <nav id="bottom-nav" class="fixed bottom-0 left-0 right-0 z-40 p-2">
+        <div class="max-w-md mx-auto bg-gray-900/50 backdrop-blur-lg border border-white/10 rounded-full shadow-lg">
+            <div class="flex justify-around items-center p-1">
+                <a href="#hero-header" class="nav-link flex flex-col items-center text-gray-400 hover:text-white transition-colors p-2 rounded-full">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="text-xs font-heading">Home</span>
+                </a>
+                <a href="#couple" class="nav-link flex flex-col items-center text-gray-400 hover:text-white transition-colors p-2 rounded-full">
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="text-xs font-heading">Couple</span>
+                </a>
+                <a href="#details" class="nav-link flex flex-col items-center text-gray-400 hover:text-white transition-colors p-2 rounded-full">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span class="text-xs font-heading">Acara</span>
+                </a>
+                <a href="#gallery" class="nav-link flex flex-col items-center text-gray-400 hover:text-white transition-colors p-2 rounded-full">
+                    <i class="fa-regular fa-images"></i>
+                    <span class="text-xs font-heading">Gallery</span>
+                </a>
+                <a href="#rsvp" class="nav-link flex flex-col items-center text-gray-400 hover:text-white transition-colors p-2 rounded-full">
+                    <i class="fa-solid fa-book"></i>
+                    <span class="text-xs font-heading">RSVP</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    <main id="main-content" class="opacity-0 transition-opacity duration-1000 relative z-10">
+        <header id="hero-header" class="h-screen w-screen flex flex-col items-center justify-center text-center p-4 bg-cover bg-center bg-fixed" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=2070&auto=format&fit=crop');">
+            <h2 class="font-heading text-lg sm:text-xl tracking-widest text-gray-200" data-aos="fade-down">WE ARE GETTING MARRIED</h2>
+            <h1 class="font-script text-7xl sm:text-8xl md:text-9xl my-4 text-gold-gradient" data-aos="zoom-in" data-aos-delay="200">Putra & Putri</h1>
+            <p class="font-heading text-xl sm:text-2xl text-gray-200" data-aos="fade-up" data-aos-delay="400">25 . 12 . 2025</p>
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2">
+                <a href="#couple" class="animate-float">
+                    <i data-lucide="arrow-down-circle" class="w-10 h-10 text-white/50 hover:text-white transition-colors"></i>
+                </a>
+            </div>
+        </header>
+
+        <section id="couple">
+             <div class="py-20 px-4 sm:px-6 text-center">
+                 <div class="max-w-4xl mx-auto">
+                     <i data-lucide="heart-handshake" class="w-16 h-16 mx-auto text-[#c5a47e] animate-float" data-aos="zoom-in-up"></i>
+                     <p class="font-heading text-base sm:text-lg mt-4 text-gray-300" data-aos="fade-up">"Demikianlah mereka bukan lagi dua, melainkan satu. Karena itu, apa yang telah dipersatukan Allah, tidak boleh diceraikan manusia."<br><span class="text-sm">(Matius 19:6)</span></p>
+                     <p class="mt-6 text-gray-300" data-aos="fade-up">Dengan penuh rasa syukur, kami mengundang Anda untuk menghadiri pernikahan kami:</p>
+                     <div class="flex flex-col md:flex-row gap-8 md:gap-12 mt-12 items-center justify-center">
+                         <div data-aos="fade-right">
+                             <div class="w-48 h-48 rounded-full mx-auto overflow-hidden border-4 border-[#c5a47e]/50 shadow-lg">
+                                 <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHByaWF8ZW58MHx8MHx8fDA%3D" alt="Foto Putra" class="w-full h-full object-cover">
+                             </div>
+                             <h3 class="font-script text-5xl sm:text-6xl text-gold-gradient mt-4">Putra</h3>
+                             <p class="font-heading text-lg sm:text-xl mt-2">Putra Pratama</p>
+                             <p class="mt-2 text-gray-400">Putra dari Bapak Putra & Ibu Putri</p>
+                         </div>
+                         <div class="text-5xl font-script text-gold-gradient my-4 md:my-0" data-aos="zoom-in">&</div>
+                         <div data-aos="fade-left" data-aos-delay="200">
+                             <div class="w-48 h-48 rounded-full mx-auto overflow-hidden border-4 border-[#c5a47e]/50 shadow-lg">
+                                 <img src="https://images.unsplash.com/photo-1481214110143-ed630356e1bb?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Foto Putri" class="w-full h-full object-cover">
+                             </div>
+                             <h3 class="font-script text-5xl sm:text-6xl text-gold-gradient mt-4">Putri</h3>
+                             <p class="font-heading text-lg sm:text-xl mt-2">Putri Eka</p>
+                             <p class="mt-2 text-gray-400">Putri dari Bapak Putra & Ibu Putri</p>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="love-story" class="py-20 px-4 sm:px-6 overflow-hidden">
+            <div class="max-w-5xl mx-auto text-center">
+                <h2 class="font-script text-5xl sm:text-6xl text-gold-gradient" data-aos="fade-down">Cerita Cinta Kami</h2>
+                <p class="mt-2 mb-12 md:mb-16 text-gray-300" data-aos="fade-up">Perjalanan dua hati menjadi satu.</p>
+                <div class="relative">
+                    <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-transparent via-[#c5a47e]/50 to-transparent hidden md:block"></div>
+                    <div class="relative md:grid md:grid-cols-[1fr_auto_1fr] md:gap-8 items-center mb-12 md:mb-16">
+                        <div class="md:text-right" data-aos="fade-right"><img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=1887&auto=format&fit=crop" alt="First Meeting" class="rounded-lg shadow-xl w-full h-auto object-cover mb-4 md:mb-0"></div>
+                        <div class="hidden md:flex justify-center relative"><div class="bg-[#121212] p-2 rounded-full border-2 border-[#c5a47e]/50"><i data-lucide="user-round-check" class="w-8 h-8 text-[#c5a47e]"></i></div></div>
+                        <div class="md:text-left mt-4 md:mt-0" data-aos="fade-left">
+                            <p class="font-heading text-xl sm:text-2xl text-gold-gradient">2021</p><h3 class="text-xl sm:text-2xl font-bold mt-1">Pertemuan Pertama</h3><p class="text-gray-400 mt-2">Kisah kami berawal dari ketidaksengajaan di sebuah acara. Sebuah sapaan sederhana menjadi pembuka cerita tak terlupakan.</p>
+                        </div>
+                    </div>
+                    <div class="relative md:grid md:grid-cols-[1fr_auto_1fr] md:gap-8 items-center mb-12 md:mb-16">
+                        <div class="md:text-right md:order-3" data-aos="fade-left"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" alt="First Date" class="rounded-lg shadow-xl w-full h-auto object-cover mb-4 md:mb-0"></div>
+                        <div class="hidden md:flex justify-center relative md:order-2"><div class="bg-[#121212] p-2 rounded-full border-2 border-[#c5a47e]/50"><i data-lucide="coffee" class="w-8 h-8 text-[#c5a47e]"></i></div></div>
+                        <div class="md:text-left md:order-1 mt-4 md:mt-0" data-aos="fade-right">
+                            <p class="font-heading text-xl sm:text-2xl text-gold-gradient">2022</p><h3 class="text-xl sm:text-2xl font-bold mt-1">Kencan Pertama</h3><p class="text-gray-400 mt-2">Secangkir kopi hangat menjadi saksi awal kebersamaan kami. Obrolan panjang menyadarkan ada sesuatu yang istimewa di antara kami.</p>
+                        </div>
+                    </div>
+                    <div class="relative md:grid md:grid-cols-[1fr_auto_1fr] md:gap-8 items-center">
+                        <div class="md:text-right" data-aos="fade-right"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop" alt="Proposal" class="rounded-lg shadow-xl w-full h-auto object-cover mb-4 md:mb-0"></div>
+                        <div class="hidden md:flex justify-center relative"><div class="bg-[#121212] p-2 rounded-full border-2 border-[#c5a47e]/50"><i data-lucide="gem" class="w-8 h-8 text-[#c5a47e]"></i></div></div>
+                        <div class="md:text-left mt-4 md:mt-0" data-aos="fade-left">
+                            <p class="font-heading text-xl sm:text-2xl text-gold-gradient">2024</p><h3 class="text-xl sm:text-2xl font-bold mt-1">Lamaran</h3><p class="text-gray-400 mt-2">Di bawah langit senja, sebuah pertanyaan tulus diucapkan dan sebuah "Ya" mengikat janji kami selamanya.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="details" class="py-20 px-4 sm:px-6 bg-cover bg-center bg-fixed" style="background-image: linear-gradient(to bottom, rgba(18,18,18,0.95), rgba(18,18,18,0.9), rgba(18,18,18,0.95)), url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png');">
+            <div class="max-w-5xl mx-auto text-center">
+                <h2 class="font-script text-5xl sm:text-6xl text-gold-gradient" data-aos="fade-down">Menuju Hari Bahagia</h2>
+                <div id="countdown" class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto my-10" data-aos="zoom-in">
+                    <div class="glass-card rounded-lg p-4"><p id="days" class="text-3xl sm:text-4xl font-bold">00</p><p class="font-heading text-sm sm:text-base">Hari</p></div>
+                    <div class="glass-card rounded-lg p-4"><p id="hours" class="text-3xl sm:text-4xl font-bold">00</p><p class="font-heading text-sm sm:text-base">Jam</p></div>
+                    <div class="glass-card rounded-lg p-4"><p id="minutes" class="text-3xl sm:text-4xl font-bold">00</p><p class="font-heading text-sm sm:text-base">Menit</p></div>
+                    <div class="glass-card rounded-lg p-4"><p id="seconds" class="text-3xl sm:text-4xl font-bold">00</p><p class="font-heading text-sm sm:text-base">Detik</p></div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 mt-16">
+                    <div class="glass-card rounded-xl p-6 sm:p-8 text-center" data-aos="fade-up-right">
+                        <h3 class="font-script text-4xl sm:text-5xl text-gold-gradient">Pemenuhan Hukum Adat</h3>
+                        <div class="w-24 h-px bg-[#c5a47e] mx-auto my-4"></div>
+                        <p class="font-heading text-xl sm:text-2xl">Kamis, 25 Desember 2245</p>
+                        <p class="text-base sm:text-lg">14:00 - 20:00 WIB</p>
+                        <p class="mt-4 text-gray-300">GPU Jaro Pirarahan</p>
+                        <p class="text-gray-400 text-sm">Jl. Pahlawan, Buntok</p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+                            <a href="https://maps.app.goo.gl/8FZwmurrnXCZZ7yG9?g_st=ipc" target="_blank" class="flex items-center justify-center gap-2 bg-[#c5a47e] text-[#1a1a1a] py-2 px-4 rounded-full text-sm hover:bg-opacity-80 transition-all"><i class="fa-solid fa-location-dot"></i> Lihat Peta</a>
+                            <button onclick="generateICS(true)" class="flex items-center justify-center gap-2 border border-[#c5a47e] text-[#c5a47e] py-2 px-4 rounded-full text-sm hover:bg-[#c5a47e]/20 transition-all"><i class="fa-solid fa-calendar"></i> Simpan Tanggal</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl p-6 sm:p-8 text-center" data-aos="fade-up-left" data-aos-delay="200">
+                        <h3 class="font-script text-4xl sm:text-5xl text-gold-gradient">Resepsi</h3>
+                        <div class="w-24 h-px bg-[#c5a47e] mx-auto my-4"></div>
+                        <p class="font-heading text-xl sm:text-2xl">Jumat, 26 Desember 2245</p>
+                        <p class="text-base sm:text-lg">09:00 - 13:00 WIB</p>
+                        <p class="mt-4 text-gray-300">GPU Jaro Pirarahan</p>
+                        <p class="text-gray-400 text-sm">Jl. Pahlawan, Buntok</p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+                             <a href="https://maps.app.goo.gl/8FZwmurrnXCZZ7yG9?g_st=ipc" target="_blank" class="flex items-center justify-center gap-2 bg-[#c5a47e] text-[#1a1a1a] py-2 px-4 rounded-full text-sm hover:bg-opacity-80 transition-all"><i class="fa-solid fa-location-dot"></i> Lihat Peta</a>
+                            <button onclick="generateICS(false)" class="flex items-center justify-center gap-2 border border-[#c5a47e] text-[#c5a47e] py-2 px-4 rounded-full text-sm hover:bg-[#c5a47e]/20 transition-all"><i class="fa-solid fa-calendar"></i> Simpan Tanggal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="py-20 px-4 sm:px-6">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="font-script text-5xl sm:text-6xl text-gold-gradient" data-aos="fade-down">Momen Bahagia Kami</h2>
+                <p class="mt-2 mb-10 text-gray-300" data-aos="fade-up">Kenangan yang terukir menjadi awal cerita cinta kami.</p>
+
+                <div class="hidden md:grid md:grid-cols-3 gap-2 sm:gap-4 h-[800px]">
+                    <div class="h-full overflow-hidden" data-aos="fade-right">
+                        <div class="scrolling-column-up space-y-4">
+                            <img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=1887&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://plus.unsplash.com/premium_photo-1756960337583-976f77d4d959?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=1887&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1529255914659-d889b05615f5?q=80&w=1887&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 gap-2 sm:gap-4" data-aos="zoom-in">
+                        <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop" class="gallery-item w-full h-full object-cover rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"><img src="https://plus.unsplash.com/premium_photo-1756960337583-976f77d4d959?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="gallery-item w-full h-full object-cover rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="h-full overflow-hidden" data-aos="fade-left">
+                        <div class="scrolling-column-down space-y-4">
+                             <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=1887&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1529255914659-d889b05615f5?q=80&w=1887&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=1887&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://plus.unsplash.com/premium_photo-1756960337583-976f77d4d959?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop" class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block md:hidden space-y-4">
+                    <div class="w-full overflow-hidden" data-aos="fade-left">
+                        <div class="scrolling-row-right flex w-max gap-4">
+                            <img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=1887&auto=format&fit=crop" class="gallery-item h-32 sm:h-40 w-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" class="gallery-item h-32 sm:h-40 w-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop" class="gallery-item h-32 sm:h-40 w-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=1887&auto=format&fit=crop" class="gallery-item h-32 sm:h-40 w-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" class="gallery-item h-32 sm:h-40 w-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop" class="gallery-item h-32 sm:h-40 w-auto object-cover rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4" data-aos="zoom-in">
+                        <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop" class="gallery-item w-full h-full object-cover rounded-lg cursor-pointer"><img src="https://plus.unsplash.com/premium_photo-1756960337583-976f77d4d959?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="gallery-item w-full h-full object-cover rounded-lg cursor-pointer">
+                    </div>
+                    <div class="w-full overflow-hidden" data-aos="fade-right">
+                        <div class="scrolling-row-left flex w-max gap-4">
+                            <img src="https://plus.unsplash.com/premium_photo-1756960337583-976f77d4d959?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="gallery-item h-32 sm:h-40 w-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" class="gallery-item h-32 sm:h-40 w-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=1887&auto=format&fit=crop" class="gallery-item h-32 sm:h-40 w-auto object-cover rounded-lg cursor-pointer"><img src="https://plus.unsplash.com/premium_photo-1756960337583-976f77d4d959?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="gallery-item h-32 sm:h-40 w-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" class="gallery-item h-32 sm:h-40 w-auto object-cover rounded-lg cursor-pointer"><img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=1887&auto=format&fit=crop" class="gallery-item h-32 sm:h-40 w-auto object-cover rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gift">
+            <div class="py-20 px-4 sm:px-6">
+                <div class="max-w-3xl mx-auto text-center">
+                    <i data-lucide="gift" class="w-16 h-16 mx-auto text-[#c5a47e]" data-aos="zoom-in"></i>
+                    <h2 class="font-script text-5xl sm:text-6xl text-gold-gradient mt-4" data-aos="fade-down">Hadiah Pernikahan</h2>
+                    <p class="mt-4 mb-10 text-gray-300" data-aos="fade-up">Doa restu Anda adalah karunia terindah. Namun jika memberi adalah ungkapan kasih, Anda dapat memberi kado secara cashless.</p>
+                    <div class="grid md:grid-cols-2 gap-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="glass-card rounded-lg p-6">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1920px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="h-6 mx-auto mb-4 filter brightness-0 invert"><p class="font-heading">Bank Central Asia</p><p class="text-xl sm:text-2xl font-bold my-2" id="bca-rek">1234567890</p><p>a.n. Putra Pratama</p>
+                            <div class="relative mt-4"><button onclick="copyToClipboard('bca-rek', this)" class="text-sm bg-[#c5a47e] text-black py-2 px-4 rounded-full flex items-center gap-2 mx-auto transition-transform hover:scale-105"><i class="fa-solid fa-copy"></i> <span>Salin Rekening</span></button></div>
+                        </div>
+                         <div class="glass-card rounded-lg p-6">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/2560px-BANK_BRI_logo.svg.png" alt="Logo BRI" class="h-6 mx-auto mb-4 filter brightness-0 invert"><p class="font-heading">Bank Rakyat Indonesia</p><p class="text-xl sm:text-2xl font-bold my-2" id="bri-rek">0987654321</p><p>a.n. Putri Eka</p>
+                            <div class="relative mt-4"><button onclick="copyToClipboard('bri-rek', this)" class="text-sm bg-[#c5a47e] text-black py-2 px-4 rounded-full flex items-center gap-2 mx-auto transition-transform hover:scale-105"><i class="fa-solid fa-copy"></i> <span>Salin Rekening</span></button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rsvp" class="py-20 px-4 sm:px-6 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1536147195327-8109d94ff64e?q=80&w=1887&auto=format&fit=crop');">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="font-script text-5xl sm:text-6xl text-gold-gradient" data-aos="fade-down">Buku Tamu (<span id="wishes-count">0</span>)</h2>
+                <p class="mt-2 mb-10 text-gray-300" data-aos="fade-up">Berikan doa restu Anda untuk kami.</p>
+                <form id="rsvp-form" class="text-left space-y-4 mb-12" data-aos="fade-up" data-aos-delay="200">
+                    <div><label for="name" class="block text-sm font-heading text-gray-300">Nama</label><input type="text" id="name" name="name" class="w-full mt-1 p-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#c5a47e] focus:border-[#c5a47e] outline-none transition" required></div>
+                    <div><label for="confirmation" class="block text-sm font-heading text-gray-300">Konfirmasi Kehadiran</label><select id="confirmation" name="confirmation" class="w-full mt-1 p-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#c5a47e] focus:border-[#c5a47e] outline-none transition"><option>Hadir</option><option>Tidak Hadir</option><option>Masih Ragu</option></select></div>
+                    <div><label for="wishes" class="block text-sm font-heading text-gray-300">Ucapan & Doa</label><textarea id="wishes" name="wishes" rows="4" class="w-full mt-1 p-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#c5a47e] focus:border-[#c5a47e] outline-none transition" required></textarea></div>
+                    <button type="submit" class="w-full bg-[#c5a47e] text-black py-3 px-8 rounded-full font-heading tracking-widest hover:bg-opacity-80 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50"><i data-lucide="send"></i> <span id="submit-text">Kirim Ucapan</span></button>
+                </form>
+                <div id="wishes-wall" class="text-left space-y-4 max-h-96 overflow-y-auto pr-2">
+                    <div id="empty-wishes-placeholder" class="text-center py-10"><p class="text-gray-500 font-heading">Belum ada ucapan.</p><p class="text-gold-gradient text-lg">Jadilah yang pertama mengirimkan doa & ucapan!</p></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center py-16 px-4 sm:px-6">
+            <p class="text-gray-400">Atas kehadiran serta doa restu Anda, kami mengucapkan terima kasih yang tulus.</p>
+            <p class="font-script text-5xl sm:text-6xl text-gold-gradient my-6">Terima Kasih</p>
+            <p class="font-heading text-lg sm:text-xl">Hormat kami yang mengasihi,</p>
+            <p class="font-heading text-xl sm:text-2xl mt-4">Putra & Putri</p>
+            <p class="text-gray-500">& Segenap Keluarga</p>
+        </footer>
+    </main>
+
+    <div id="lightbox" class="hidden fixed inset-0 bg-black/90 z-[200] flex items-center justify-center p-4 opacity-0 transition-opacity duration-300 cursor-grab active:cursor-grabbing">
+        <button id="close-lightbox" class="absolute top-4 right-4 text-white/70 hover:text-white hover:bg-black/20 rounded-full p-2 transition-all duration-300 z-10"><i class="fa-solid fa-xmark"></i></button>
+        <button id="prev-lightbox" class="absolute left-2 sm:left-5 text-white/70 hover:text-white hover:bg-black/20 rounded-full p-2 transition-all duration-300 z-10"><i class="fa-solid fa-arrow-left"></i></button>
+        <button id="next-lightbox" class="absolute right-2 sm:right-5 text-white/70 hover:text-white hover:bg-black/20 rounded-full p-2 transition-all duration-300 z-10"><i class="fa-solid fa-arrow-right"></i></button>
+        <img id="lightbox-img" src="" alt="Gambar galeri yang diperbesar" class="max-w-full max-h-full rounded-lg shadow-2xl transition-transform duration-300 ease-out">
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide-static@latest/umd/lucide.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
